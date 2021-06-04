@@ -38,6 +38,8 @@ import java.net.URI;
 import java.net.URL;
 import java.security.AccessController;
 import java.security.PrivilegedAction;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -1021,6 +1023,10 @@ public class ClassUtils
         {
             // Convert a Integer (0, 1) to Boolean (FALSE, TRUE) and null otherwise
             return (Integer)value == 0 ? Boolean.FALSE : ((Integer)value == 1 ? Boolean.TRUE : null);
+        }
+        else if (type == LocalDate.class && value instanceof Date)
+        {
+            return ((Date)value).toLocalDate();
         }
         return null;
     }
